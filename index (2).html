@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aक्स. — Finance & Research Content Studio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;700&family=Noto+Sans+Devanagari:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --forest: #1a2f2b;
+      --white: #ffffff;
+      --black: #000000;
+      --cream: #f4f1ea;
+      --forest-light: #24403b;
+      --forest-muted: rgba(26,47,43,0.08);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--black); font-size: 19px; line-height: 1.8; }
+
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 100; background: var(--forest); display: flex; justify-content: space-between; align-items: center; padding: 0 5%; height: 62px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .nav-brand { display: inline-flex; align-items: baseline; text-decoration: none; line-height: 1; }
+    .logo-l { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 1.5rem; color: var(--white); letter-spacing: -0.02em; }
+    .logo-d { font-family: 'Noto Sans Devanagari', sans-serif; font-weight: 700; font-size: 1.22rem; color: var(--white); position: relative; top: 0.05em; }
+    .logo-p { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 1.5rem; color: var(--white); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.95rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--white); }
+
+    /* HERO */
+    .hero { background: var(--forest); color: var(--white); padding: 100px 5% 90px; position: relative; overflow: hidden; }
+    .hero::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 50%, rgba(255,255,255,0.04) 0%, transparent 70%); pointer-events: none; }
+    .hero-tag { display: inline-block; background: rgba(244,241,234,0.12); color: var(--cream); font-size: 0.9rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 6px 14px; border-radius: 2px; margin-bottom: 28px; border: 1px solid rgba(244,241,234,0.2); }
+    .hero-logo { display: flex; align-items: baseline; margin-bottom: 16px; line-height: 1.05; }
+    .hl-l { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: clamp(3.2rem, 6vw, 5rem); color: var(--white); letter-spacing: -0.02em; }
+    .hl-d { font-family: 'Noto Sans Devanagari', sans-serif; font-weight: 700; font-size: clamp(2.6rem, 5vw, 4.2rem); color: var(--white); position: relative; top: 0.06em; }
+    .hl-p { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: clamp(3.2rem, 6vw, 5rem); color: var(--white); letter-spacing: -0.02em; }
+    .hero-subtitle { font-size: 1.3rem; color: rgba(244,241,234,0.7); margin-bottom: 28px; font-weight: 300; letter-spacing: 0.03em; }
+    .hero-body { max-width: 640px; color: rgba(255,255,255,0.8); font-size: 1.15rem; line-height: 1.85; margin-bottom: 56px; }
+    .hero-stats { display: flex; gap: 56px; flex-wrap: wrap; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 700; color: var(--cream); display: block; }
+    .stat-label { font-size: 0.92rem; color: rgba(255,255,255,0.5); letter-spacing: 0.06em; text-transform: uppercase; }
+
+    /* SECTIONS */
+    section { padding: 90px 5%; }
+    section:nth-child(even) { background: var(--white); }
+    .section-tag { font-size: 0.88rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--forest); font-weight: 500; margin-bottom: 12px; display: block; opacity: 0.7; }
+    h2 { font-family: 'Playfair Display', serif; font-size: clamp(2.1rem, 3.5vw, 3rem); font-weight: 600; color: var(--forest); margin-bottom: 36px; line-height: 1.2; }
+    p { margin-bottom: 1rem; color: #2a2a2a; }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+    .about-cards { display: flex; flex-direction: column; gap: 16px; }
+    .about-card { background: var(--cream); border: 1px solid rgba(26,47,43,0.1); border-radius: 4px; padding: 20px 24px; display: flex; gap: 16px; align-items: flex-start; }
+    .card-icon { flex-shrink: 0; width: 28px; display: flex; align-items: center; justify-content: center; padding-top: 3px; }
+    .card-icon svg { width: 20px; height: 20px; stroke: var(--forest); fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .card-title { font-weight: 600; font-size: 1.05rem; color: var(--forest); margin-bottom: 4px; }
+    .card-desc { font-size: 0.97rem; color: #555; line-height: 1.6; }
+
+    /* SUMMARY */
+    .summary-inner { border-left: 3px solid var(--forest); padding-left: 32px; max-width: 780px; }
+    .summary-inner p { font-size: 1.2rem; line-height: 1.9; }
+    em { font-style: italic; color: var(--forest); font-weight: 500; }
+    .summary-byline { margin-top: 24px; font-size: 0.95rem; letter-spacing: 0.08em; text-transform: uppercase; color: #888; }
+
+    /* PORTFOLIO */
+    .portfolio-cats { display: flex; flex-direction: column; gap: 44px; }
+    .cat-label { font-size: 0.88rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; color: var(--forest); border-bottom: 1px solid rgba(26,47,43,0.15); padding-bottom: 8px; margin-bottom: 18px; }
+    .cards-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    .portfolio-card { background: var(--cream); border: 1px solid rgba(26,47,43,0.1); border-radius: 4px; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px; text-decoration: none; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
+    .portfolio-card:hover { border-color: var(--forest); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,47,43,0.1); }
+    .pc-title { font-weight: 600; font-size: 1.05rem; color: var(--forest); line-height: 1.4; }
+    .pc-desc { font-size: 0.95rem; color: #555; line-height: 1.65; }
+    .pc-link { font-size: 0.88rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--forest); font-weight: 600; margin-top: auto; display: flex; align-items: center; gap: 5px; }
+    .pc-link::after { content: '↗'; }
+
+    /* SKILLS */
+    .skills-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+    .skill-heading { font-weight: 600; font-size: 1rem; color: var(--forest); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .skill-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+    .chip { background: var(--forest); color: var(--white); font-size: 0.93rem; padding: 8px 16px; border-radius: 2px; font-weight: 500; }
+    .chip.alt { background: transparent; border: 1px solid rgba(26,47,43,0.3); color: var(--forest); }
+
+    /* WHY */
+    .why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .why-card { border: 1px solid rgba(26,47,43,0.12); border-radius: 4px; padding: 28px; background: var(--cream); position: relative; }
+    .why-num { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 700; color: rgba(26,47,43,0.1); position: absolute; top: 20px; right: 24px; line-height: 1; }
+    .why-rule { width: 28px; height: 2px; background: var(--forest); opacity: 0.4; margin-bottom: 16px; }
+    .why-title { font-weight: 600; font-size: 1.1rem; color: var(--forest); margin-bottom: 8px; }
+    .why-text { font-size: 1rem; color: #444; line-height: 1.75; }
+
+    /* CONTACT */
+    #contact { background: var(--forest); }
+    #contact h2 { color: var(--white); }
+    #contact .section-tag { color: rgba(244,241,234,0.6); }
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+    .contact-item { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 22px; }
+    .ci-icon { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.85rem; color: rgba(255,255,255,0.3); margin-bottom: 10px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .ci-label { font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 4px; }
+    .ci-value { font-size: 1rem; color: var(--white); font-weight: 500; }
+    .ci-value a { color: var(--cream); text-decoration: none; }
+    .ci-value a:hover { text-decoration: underline; }
+
+    /* FOOTER */
+    footer { background: var(--black); color: rgba(255,255,255,0.4); text-align: center; padding: 24px 5%; font-size: 0.92rem; letter-spacing: 0.04em; }
+    .ft-l { font-family: 'DM Sans', sans-serif; font-weight: 700; color: rgba(255,255,255,0.7); }
+    .inline-logo { display: inline; white-space: nowrap; }
+    .inline-logo .logo-l, .inline-logo .logo-p { font-family: 'DM Sans', sans-serif; font-weight: 700; color: inherit; }
+    .inline-logo .logo-d { font-family: 'Noto Sans Devanagari', sans-serif; font-weight: 700; color: inherit; }
+    .ft-d { font-family: 'Noto Sans Devanagari', sans-serif; font-weight: 700; color: rgba(255,255,255,0.7); }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      body { font-size: 17px; }
+      .nav-links { display: none; }
+      .about-grid, .skills-layout, .why-grid { grid-template-columns: 1fr; gap: 32px; }
+      .hero-stats { gap: 32px; }
+      .hero { padding: 72px 5% 64px; }
+      section { padding: 64px 5%; }
+      .hl-l { font-size: clamp(3rem, 13vw, 4rem); }
+      .hl-d { font-size: clamp(2.4rem, 11vw, 3.3rem); }
+      .hl-p { font-size: clamp(3rem, 13vw, 4rem); }
+      .hero-subtitle { font-size: 1.15rem; }
+      .hero-body { font-size: 1.1rem; }
+      h2 { font-size: clamp(1.9rem, 7vw, 2.5rem); }
+      .summary-inner p { font-size: 1.1rem; }
+      .pc-title { font-size: 1.08rem; }
+      .pc-desc { font-size: 1rem; }
+      .why-title { font-size: 1.05rem; }
+      .why-text { font-size: 1rem; }
+      .card-title { font-size: 1rem; }
+      .card-desc { font-size: 0.98rem; }
+      .ci-value { font-size: 1.05rem; }
+      .stat-num { font-size: 2.2rem; }
+      .stat-label { font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="#">
+    <span class="logo-l">A</span><span class="logo-d">क्स</span><span class="logo-p">.</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#summary">Summary</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#why">Why <span class="inline-logo"><span class="logo-l">A</span><span class="logo-d">क्स</span><span class="logo-p">.</span></span></a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <span class="hero-tag">Open to partnerships &amp; briefs</span>
+  <div class="hero-logo">
+    <span class="hl-l">A</span><span class="hl-d">क्स</span><span class="hl-p">.</span>
+  </div>
+  <p class="hero-subtitle">Finance &amp; Research Content Studio</p>
+  <p class="hero-body"><span class="inline-logo"><span class="logo-l">A</span><span class="logo-d">क्स</span><span class="logo-p">.</span></span> is a content studio built at the intersection of economic rigour and narrative clarity — turning data, market complexity, and research into content that informs, earns trust, and moves readers. We don't just write; we bring an analyst's framework to every brief.</p>
+  <div class="hero-stats">
+    <div>
+      <span class="stat-num">50+</span>
+      <span class="stat-label">Published samples across 5 formats</span>
+    </div>
+    <div>
+      <span class="stat-num">M.Sc.</span>
+      <span class="stat-label">Economics — academic foundation</span>
+    </div>
+    <div>
+      <span class="stat-num">10+</span>
+      <span class="stat-label">Content categories mastered</span>
+    </div>
+  </div>
+</div>
+
+<section id="about">
+  <span class="section-tag">01 Background</span>
+  <h2>The studio behind the work</h2>
+  <div class="about-grid">
+    <div>
+      <p><span class="inline-logo"><span class="logo-l">A</span><span class="logo-d">क्स</span><span class="logo-p">.</span></span> is a content studio that came to writing through economics — and that origin story shapes everything. Where most content agencies default to templates, <span class="inline-logo"><span class="logo-l">A</span><span class="logo-d">क्स</span><span class="logo-p">.</span></span> builds analytical frameworks first, then crafts the clearest possible way to communicate them.</p>
+      <p>Our work spans the full spectrum of technical financial content: from live IPO tracking and earnings previews to long-form ETF narratives and derivatives education. Each format demands something different, and we deliver all of them with the same standard of rigour.</p>
+      <p>What <span class="inline-logo"><span class="logo-l">A</span><span class="logo-d">क्स</span><span class="logo-p">.</span></span> brings to your team is not just polished prose — it is the ability to think like a researcher, write like a journalist, and structure content like a strategist.</p>
+    </div>
+    <div class="about-cards">
+      <div class="about-card">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+        <div>
+          <div class="card-title">Economics-Trained Foundation</div>
+          <div class="card-desc">Analytical rigour — structured thinking, data literacy, and research-first reasoning</div>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div>
+          <div class="card-title">Finance Writing Experience</div>
+          <div class="card-desc">Markets, MFs, IPOs, earnings, derivatives — written for real financial audiences</div>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+        <div>
+          <div class="card-title">Research-First Approach</div>
+          <div class="card-desc">Every piece grounded in data, context, and source integrity before a word is written</div>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+        <div>
+          <div class="card-title">Cross-Format Versatility</div>
+          <div class="card-desc">Long-form narratives, real-time news, SEO articles, company profiles, explainers</div>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <div>
+          <div class="card-title">Based in India</div>
+          <div class="card-desc">Available for remote, hybrid, or full-time engagements globally</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="summary">
+  <span class="section-tag">02 Professional Summary</span>
+  <div class="summary-inner">
+    <p>Content that lacks analytical grounding rarely earns credibility with <em>macro audiences</em> — and content without narrative structure rarely earns readers at all. <span class="inline-logo"><span class="logo-l">A</span><span class="logo-d">क्स</span><span class="logo-p">.</span></span> works at that intersection. Trained in economics and practised in finance writing, we produce pieces that are <em>rigorous in research, deliberate in structure, creative, and clear in communication</em>. Whether breaking down a company's quarterly results, mapping thematic sector trends, or making complex market mechanics accessible to everyday readers — we write for the reader while fully respecting the complexity of the subject.</p>
+    <p class="summary-byline"><span class="inline-logo"><span class="logo-l">A</span><span class="logo-d">क्स</span><span class="logo-p">.</span></span> &middot; Finance &amp; Research Content Studio &middot; India</p>
+  </div>
+</section>
+
+<section id="portfolio">
+  <span class="section-tag">03 Writing Portfolio</span>
+  <h2>13 selected work samples</h2>
+  <div class="portfolio-cats">
+
+    <div>
+      <div class="cat-label">Market Analysis</div>
+      <div class="cards-row">
+        <a class="portfolio-card" href="https://docs.google.com/document/d/1vL0_yclfSCu3XQo2fRIioAcvpjnLyWQP_NVtaGtJwWo/edit?usp=sharing" target="_blank">
+          <div class="pc-title">Weekly Market Recap – 28 February 2026</div>
+          <div class="pc-desc">A structured weekly synthesis of market movements, translating price action and macro events into a coherent narrative. Demonstrates ability to produce time-sensitive, data-driven content with editorial consistency.</div>
+          <span class="pc-link">View Sample</span>
+        </a>
+        <a class="portfolio-card" href="https://docs.google.com/document/d/1Y2waz7Nglu0Sq9lZ056o539iOAAtCx_liPz5oZWfkAs/edit?usp=sharing" target="_blank">
+          <div class="pc-title">Nifty Thematic Outlook – October 2025</div>
+          <div class="pc-desc">A forward-looking thematic analysis of Nifty sector trends, blending technical context with macroeconomic reasoning. Showcases the ability to write strategic outlook pieces that go beyond surface commentary.</div>
+          <span class="pc-link">View Sample</span>
+        </a>
+        <a class="portfolio-card" href="https://docs.google.com/document/d/1hYdizAnVu8Y251HsTM794x__ByWg77WC-b7_gsO5sIo/edit?usp=sharing" target="_blank">
+          <div class="pc-title">DII Activity News Blog Post</div>
+          <div class="pc-desc">A news-driven piece on Domestic Institutional Investor activity, translating institutional flow data into timely, readable market intelligence. Reflects strong command of financial journalism conventions.</div>
+          <span class="pc-link">Read Article</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <div class="cat-label">Mutual Funds &amp; ETFs</div>
+      <div class="cards-row">
+        <a class="portfolio-card" href="https://docs.google.com/document/d/1irNzOnEKvrbGD5Hk5kTQacrkwQcFUtWbjt880Ag6eks/edit?usp=sharing" target="_blank">
+          <div class="pc-title">Mutual Fund and FPI Activity: February 2026</div>
+          <div class="pc-desc">A data-rich analytical piece covering mutual fund flows and Foreign Portfolio Investor trends. Demonstrates the ability to interpret institutional data and communicate it clearly across a diverse readership.</div>
+          <span class="pc-link">View Sample</span>
+        </a>
+        <a class="portfolio-card" href="https://docs.google.com/document/d/1d4MlBZTqOgeGEv5uWAJDZVL4_q8_KaviXI3gaY_WQgw/edit?usp=sharing" target="_blank">
+          <div class="pc-title">India's ETF Revolution</div>
+          <div class="pc-desc">A long-form narrative examining the rapid growth of exchange-traded funds in the Indian market. Showcases research-backed storytelling — blending historical context, industry data, and investor implications.</div>
+          <span class="pc-link">Read Article</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <div class="cat-label">Earnings &amp; Corporate Coverage</div>
+      <div class="cards-row">
+        <a class="portfolio-card" href="https://docs.google.com/document/d/1nMQHHsqAqvPQV1s86bIjL58y1zTdk3JG6N1SJlQ6lik/edit?usp=sharing" target="_blank">
+          <div class="pc-title">HDFC Bank Q3 FY25–26 Results Preview</div>
+          <div class="pc-desc">Pre-earnings preview for one of India's largest private sector banks — analyst expectations, key metrics to watch, and macroeconomic context. Credible, forward-looking coverage written under deadline pressure.</div>
+          <span class="pc-link">View Sample</span>
+        </a>
+        <a class="portfolio-card" href="https://docs.google.com/document/d/1gfCg0JYwfgtAWVH6SXBd_uaATcY_CsYn0btDxha1YW8/edit?usp=sharing" target="_blank">
+          <div class="pc-title">G.M. Breweries Q3 FY25–26 Results</div>
+          <div class="pc-desc">Post-earnings coverage of a mid-cap FMCG company, analysing quarterly performance and identifying sector-level implications.</div>
+          <span class="pc-link">View Sample</span>
+        </a>
+        <a class="portfolio-card" href="https://docs.google.com/document/d/1JPuf-p12FKlL-bAIifAV0tPmUKep2FE48C-80e6NDtU/edit?usp=sharing" target="_blank">
+          <div class="pc-title">Powerica IPO Subscription Status</div>
+          <div class="pc-desc">A real-time IPO subscription update providing investors with clear subscription data, GMP trends, and a structured overview of the offering. Time-critical content optimised for speed and readability.</div>
+          <span class="pc-link">Read Article</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <div class="cat-label">SEO &amp; Stock Research</div>
+      <div class="cards-row">
+        <a class="portfolio-card" href="https://docs.google.com/document/d/17MctS8FGVw2MP734-DKq2xxj1UosOwbp6a8kC2gfc1s/edit?usp=sharing" target="_blank">
+          <div class="pc-title">High Conviction MTF Pick: Reliance Industries</div>
+          <div class="pc-desc">A research-backed stock recommendation for margin trading facility readers. Combines fundamental analysis with audience-focused copy that communicates risk and opportunity clearly.</div>
+          <span class="pc-link">View Sample</span>
+        </a>
+        <a class="portfolio-card" href="https://docs.google.com/document/d/11jWC1asWdWoNgWIGv44Q1YphqlOMgUaUYBdJsqjncE4/edit?usp=sharing" target="_blank">
+          <div class="pc-title">Positional Pick: IIFL Finance</div>
+          <div class="pc-desc">A positional trade recommendation written for investors seeking clear entry rationale, target levels, and stop-loss context. Structured, actionable content that serves both SEO intent and reader needs.</div>
+          <span class="pc-link">View Sample</span>
+        </a>
+        <a class="portfolio-card" href="https://docs.google.com/document/d/1tnmuUMxux5UeY295Ok9hgbShWDxn-wV7iN1BUkWO2BA/edit?usp=sharing" target="_blank">
+          <div class="pc-title">Wockhardt Limited</div>
+          <div class="pc-desc">A comprehensive company profile covering business model, financials, and market positioning. Long-form structured research writing with factual rigour combined with clean, accessible copy.</div>
+          <span class="pc-link">View Sample</span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <div class="cat-label">Educational &amp; Broader Content</div>
+      <div class="cards-row">
+        <a class="portfolio-card" href="https://docs.google.com/document/d/1c2wfxximnTiDD-AyXFLYxD-fWDoNiXh7/edit?usp=sharing" target="_blank">
+          <div class="pc-title">Understanding Option Expiration</div>
+          <div class="pc-desc">An educational explainer demystifying options expiry mechanics for retail investors. Showcases the ability to simplify technically dense financial topics into engaging, structured content.</div>
+          <span class="pc-link">Read Article</span>
+        </a>
+        <a class="portfolio-card" href="https://docs.google.com/document/d/1tEdHGyw-K8f1my2NSGcokW9zBrbHFhKqX8yuTp79feg/edit?usp=sharing" target="_blank">
+          <div class="pc-title">How AI Is Changing the Marketing Landscape</div>
+          <div class="pc-desc">A broad-audience SEO piece on AI's disruption of marketing — from content automation to personalisation at scale. Demonstrates versatility beyond core finance niches.</div>
+          <span class="pc-link">Read Article</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="skills">
+  <span class="section-tag">04 Competencies</span>
+  <h2>Skills &amp; expertise</h2>
+  <div class="skills-layout">
+    <div>
+      <div class="skill-heading">Core proficiencies</div>
+      <div class="skill-chips">
+        <span class="chip">Financial Writing</span>
+        <span class="chip">Research &amp; Analysis</span>
+        <span class="chip">Long-Form Content</span>
+        <span class="chip">SEO Writing</span>
+        <span class="chip">Market Coverage</span>
+        <span class="chip">Educational Explainers</span>
+        <span class="chip">Audience-Centric Writing</span>
+      </div>
+    </div>
+    <div>
+      <div class="skill-heading">Additional capabilities</div>
+      <div class="skill-chips">
+        <span class="chip alt">Content Strategy</span>
+        <span class="chip alt">Editorial Structuring</span>
+        <span class="chip alt">IPO Coverage</span>
+        <span class="chip alt">Earnings Analysis</span>
+        <span class="chip alt">Fund Flow Analysis</span>
+        <span class="chip alt">Derivatives Explainers</span>
+        <span class="chip alt">Company Profiles</span>
+        <span class="chip alt">Stock Research</span>
+        <span class="chip alt">Business Communication</span>
+        <span class="chip alt">Topic Research</span>
+        <span class="chip alt">News Writing</span>
+        <span class="chip alt">Blog Content</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <span class="section-tag">05 Value Proposition</span>
+  <h2>Why work with <span class="inline-logo"><span class="logo-l">A</span><span class="logo-d">क्स</span><span class="logo-p">.</span></span></h2>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-num">01</div>
+      <div class="why-rule"></div>
+      <div class="why-title">Economics training as a writing edge</div>
+      <p class="why-text">A foundation in Economics is not simply a credential — it is a framework for thinking. At <span class="inline-logo"><span class="logo-l">A</span><span class="logo-d">क्स</span><span class="logo-p">.</span></span>, we approach every content brief the way an analyst approaches a research question: with structured reasoning, an eye for data, and a healthy scepticism of surface-level narratives.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-num">02</div>
+      <div class="why-rule"></div>
+      <div class="why-title">Deep finance domain knowledge</div>
+      <p class="why-text">We write about markets, mutual funds, IPOs, earnings, and derivatives not as observers, but as people who understand the underlying mechanics. This domain fluency shows in every piece — fewer errors, sharper framing, and greater credibility with financial audiences.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-num">03</div>
+      <div class="why-rule"></div>
+      <div class="why-title">Breadth without loss of depth</div>
+      <p class="why-text">Our portfolio spans weekly recaps, long-form research, SEO articles, educational explainers, and corporate profiles. This range means we adapt to different editorial formats and content calendars — without losing the analytical quality that defines our work.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-num">04</div>
+      <div class="why-rule"></div>
+      <div class="why-title">Complexity made readable</div>
+      <p class="why-text">The rarest skill in financial content is not knowing the subject — it is knowing how to explain it. We have a demonstrated ability to take dense, data-heavy concepts and write about them in ways that serve a wide reader spectrum without dumbing anything down.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <span class="section-tag">06 Contact</span>
+  <h2>Let's work together</h2>
+  <p style="color:rgba(255,255,255,0.65); margin-bottom:32px; max-width:500px;"><span class="inline-logo"><span class="logo-l">A</span><span class="logo-d">क्स</span><span class="logo-p">.</span></span> is open to retainer, project-based, and long-term content partnerships in financial content, research writing, and content strategy. Based in India — available remotely worldwide.</p>
+  <div class="contact-grid">
+    <div class="contact-item">
+      <div class="ci-icon">Mail</div>
+      <div class="ci-label">Email</div>
+      <div class="ci-value"><a href="mailto:amankunalgandhi@gmail.com">amankunalgandhi@gmail.com</a></div>
+    </div>
+    <div class="contact-item">
+      <div class="ci-icon">Profile</div>
+      <div class="ci-label">LinkedIn</div>
+      <div class="ci-value"><a href="https://www.linkedin.com/in/aman-gandhi-0a3ba8218" target="_blank">View Profile</a></div>
+    </div>
+    <div class="contact-item">
+      <div class="ci-icon">Call</div>
+      <div class="ci-label">Phone</div>
+      <div class="ci-value">+91 788 799 2299</div>
+    </div>
+    <div class="contact-item">
+      <div class="ci-icon">CV</div>
+      <div class="ci-label">Resume</div>
+      <div class="ci-value"><a href="https://www.linkedin.com/in/aman-gandhi-0a3ba8218" target="_blank">Available on LinkedIn</a></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="ft-l">A</span><span class="ft-d">क्स</span><span class="ft-l">.</span>&nbsp;&middot;&nbsp;Finance &amp; Research Content Studio&nbsp;&middot;&nbsp;India&nbsp;&middot;&nbsp;2026
+</footer>
+
+</body>
+</html>
